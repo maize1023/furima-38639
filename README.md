@@ -1,15 +1,15 @@
 ## users table
 
-| Column           | Type   | Options                   |
-| ---------------- | ------ | ------------------------- |
-| nickname         | string | null: false, unique: true |
-| email            | string | null: false, unique: true |
-| password         | string | null: false, unique: true |
-| kanji_last_name  | string | null: false               |
-| kanji_first_name | string | null: false               |
-| kana_last_name   | string | null: false               |
-| kana_first_name  | string | null: false               |
-| birthday         | string | null: false               |
+| Column           | Type   | Options     |
+| ---------------- | ------ | ----------- |
+| nickname         | string | null: false |
+| email            | string | null: false |
+| password         | string | null: false |
+| kanji_last_name  | string | null: false |
+| kanji_first_name | string | null: false |
+| kana_last_name   | string | null: false |
+| kana_first_name  | string | null: false |
+| date             | string | null: false |
 
 ### Association
 
@@ -18,18 +18,17 @@
 
 ## items table
 
-| Column      | Type       | Options                        |
-| ----------- | ---------- | ------------------------------ |
-| name        | string     | null: false                    |
-| image       | string     | null: false                    |
-| description | text       | null: false                    |
-| category    | string     | null: false                    |
-| condition   | string     | null: false                    |
-| fee         | string     | null: false                    |
-| from        | string     | null: false                    |
-| date        | string     | null: false                    |
-| price       | string     | null: false                    |
-| user_id     | references | null: false, foreign_key: true |
+| Column       | Type                                                       | Options                        |
+| ------------ | ---------------------------------------------------------- | ------------------------------ |
+| name         | string                                                     | null: false                    |
+| description  | text                                                       | null: false                    |
+| category_id  | numericality: { other_than: 1 , message: "can't be blank"} | null: false                    |
+| condition_id | numericality: { other_than: 1 , message: "can't be blank"} | null: false                    |
+| fee_id       | numericality: { other_than: 1 , message: "can't be blank"} | null: false                    |
+| from_id      | numericality: { other_than: 1 , message: "can't be blank"} | null: false                    |
+| date_id      | numericality: { other_than: 1 , message: "can't be blank"} | null: false                    |
+| price        | string                                                     | null: false                    |
+| user         | references                                                 | null: false, foreign_key: true |
 
 ### Association
 
@@ -39,10 +38,10 @@
 
 ## purchase_records table
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| item_id | references | null: false, foreign_key: true |
-| user_id | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -52,15 +51,15 @@
 
 ## addresses table
 
-| Column             | Type       | Options                        |
-| ------------------ | ---------- | ------------------------------ |
-| post_code          | string     | null: false                    |
-| prefecture         | string     | null: false                    |
-| town               | string     | null: false                    |
-| street             | string     | null: false                    |
-| building           | string     | null: false                    |
-| phone              | string     | null: false                    |
-| purchase_record_id | references | null: false, foreign_key: true |
+| Column          | Type                                                       | Options                        |
+| --------------- | ---------------------------------------------------------- | ------------------------------ |
+| post_code       | string                                                     | null: false                    |
+| prefecture_id   | numericality: { other_than: 1 , message: "can't be blank"} | null: false                    |
+| town            | string                                                     | null: false                    |
+| street          | string                                                     | null: false                    |
+| building        | string                                                     |                                |
+| phone           | string                                                     | null: false                    |
+| purchase_record | references                                                 | null: false, foreign_key: true |
 
 ### Association
 
