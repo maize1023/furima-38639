@@ -9,7 +9,7 @@
 | kanji_first_name   | string | null: false               |
 | kana_last_name     | string | null: false               |
 | kana_first_name    | string | null: false               |
-| date               | string | null: false               |
+| birth_date         | date   | null: false               |
 
 ### Association
 
@@ -26,8 +26,8 @@
 | condition_id | integer    | null: false                    |
 | fee_id       | integer    | null: false                    |
 | from_id      | integer    | null: false                    |
-| date_id      | integer    | null: false                    |
-| price        | string     | null: false                    |
+| day_id       | integer    | null: false                    |
+| price        | integer    | null: false                    |
 | user         | references | null: false, foreign_key: true |
 
 ### Association
