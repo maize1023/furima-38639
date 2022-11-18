@@ -6,7 +6,7 @@
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
 | kanji_last_name    | string | null: false               |
-| kanji_first_name   | string | null: false               |
+| kana_first_name2   | string | null: false               |
 | kana_last_name     | string | null: false               |
 | kana_first_name    | string | null: false               |
 | birth_date         | date   | null: false               |
