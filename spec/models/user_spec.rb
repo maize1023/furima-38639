@@ -8,10 +8,6 @@ RSpec.describe User, type: :model do
   describe 'ユーザー新規登録' do
     context 'ユーザーが登録できる場合' do
         it '全ての必須項目が記入されている' do
-          @user.kanji_last_name
-          @user.kana_first_name2
-          @user.kana_last_name
-          @user.kana_first_name
           expect(@user).to be_valid
         end
     end
@@ -61,14 +57,12 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Birth date can't be blank"
       end
-
-
-
        it 'emailが重複して登録できない' do
-        @user.email = @user.birth_date
+        user1 = @user
+        user1.save
         @user.valid?
-        expect(@user.errors.full_messages).to include "Email is invalid"
-      end
+        end
+
        it 'emailに@が含まれていない' do
         @user.email = '111gmail.com'
         @user.valid?
@@ -79,28 +73,28 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Password can't be blank"
       end
-       it '6文字以上でないと登録できない' do
+       it 'passwordは、6文字以上でないと登録できない' do
         @user.password = '666'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
       end
-       it 'password_confirmationと一致していないと登録できない' do
+       it 'passwordは、password_confirmationと一致していないと登録できない' do
         @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Password confirmation doesn't match Password"
       end
 
-       it '英字のみでは登録できない' do
+       it 'passwordは、英字のみでは登録できない' do
         @user.password= 'eeeeee'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid"
       end
-       it '数字のみでは登録できない' do
+       it 'passwordは、数字のみでは登録できない' do
         @user.password = '777777'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid"
       end
-       it '全角では登録できない' do
+       it 'passwordは、全角では登録できない' do
         @user.password = '１１１１１１'
         @user.valid?
         expect(@user.errors.full_messages).to include "Password is invalid"
