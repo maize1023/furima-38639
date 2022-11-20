@@ -30,7 +30,7 @@ class From < ActiveHash::Base
    { id: 28, name: '大阪府' },
    { id: 29, name: '兵庫県' },
    { id: 30, name: '奈良県' },
-   { id: 32, name: '和歌山県' },
+   { id: 31, name: '和歌山県' },
    { id: 32, name: '鳥取県' },
    { id: 33, name: '島根県' },
    { id: 34, name: '岡山県' },

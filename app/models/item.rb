@@ -1,5 +1,7 @@
 class Item < ApplicationRecord
 
+  extend ActiveHash::Associations::ActiveRecordExtensions
+
   validates :name, presence: true
   validates :description, presence: true
   validates :category_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
@@ -14,10 +16,10 @@ class Item < ApplicationRecord
   belongs_to :user
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  belongs_to :condition
-  belongs_to :fee
-  belongs_to :from
-  belongs_to :day
+  belongs_to_active_hash :category
+  belongs_to_active_hash :condition
+  belongs_to_active_hash :fee
+  belongs_to_active_hash :from
+  belongs_to_active_hash :day
 
 end

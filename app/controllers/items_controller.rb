@@ -2,6 +2,8 @@ class ItemsController < ApplicationController
   before_action :move_to_sing_in, except: [:index]
   before_action :move_to_sing_in, except: [:index]
 
+
+
   def index
     @items = Item.all
   end
@@ -13,7 +15,13 @@ class ItemsController < ApplicationController
 
   # データ保存したtきはトップページに、失敗したら出品ページに留まる&エラーメッセージ&情報保持
   def create
-    Item.create(item_params)
+    @item = Item.new(item_params)
+    @item.save
+    if @item.save
+      redirect_to root_path
+   else
+      render :new
+   end
   end
 
   private
