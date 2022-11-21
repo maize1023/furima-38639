@@ -5,12 +5,16 @@ class ItemsController < ApplicationController
 
 
   def index
-    # @items = Item.all
+    @items = Item.all.order(created_at: :desc)
   end
 
   def new
     @item = Item.new
   end
+
+  # def show
+  #   @item = Item.find(item_params)
+  # end
 
 
   # データ保存したtきはトップページに、失敗したら出品ページに留まる&エラーメッセージ&情報保持
