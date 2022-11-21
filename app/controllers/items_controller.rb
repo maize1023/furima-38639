@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sing_in, except: [:index]
+  before_action :move_to_sing_in, except: [:index, :show]
 
 
 
@@ -12,9 +12,9 @@ class ItemsController < ApplicationController
     @item = Item.new
   end
 
-  # def show
-  #   @item = Item.find(item_params)
-  # end
+  def show
+    @item = Item.find(params[:id])
+  end
 
 
   # データ保存したtきはトップページに、失敗したら出品ページに留まる&エラーメッセージ&情報保持
