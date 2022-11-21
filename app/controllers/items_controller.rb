@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sing_in, except: [:index, :show]
+  before_action :move_to_sing_in, except: [:index, :show,]
+
 
 
 
@@ -17,6 +18,7 @@ class ItemsController < ApplicationController
   end
 
 
+
   # データ保存したtきはトップページに、失敗したら出品ページに留まる&エラーメッセージ&情報保持
   def create
     @item = Item.new(item_params)
@@ -25,6 +27,26 @@ class ItemsController < ApplicationController
    else
       render :new
    end
+  end
+
+  def edit
+    # if user_signed_in? && current_user.id != @item.user_id
+    #   redirect_to root_path
+    # end
+    @item = Item.find(params[:id])
+
+    if @item.user_id != current_user.id
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   private
