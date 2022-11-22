@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :move_to_sing_in, except: [:index, :show]
-
-
+  before_action :move_to_sing_in, except: [:index, :show,]
+  before_action :set_item, only: [:show, :edit, :update]
 
 
   def index
@@ -13,9 +12,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end
-
 
   # データ保存したtきはトップページに、失敗したら出品ページに留まる&エラーメッセージ&情報保持
   def create
@@ -27,7 +24,26 @@ class ItemsController < ApplicationController
    end
   end
 
+  def edit
+    if @item.user_id != current_user.id
+      redirect_to root_path
+    end
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
+
   private
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
   def item_params
     params.require(:item).permit(:name, :description, :category_id,  :condition_id, :fee_id, :from_id, :day_id, :price, :image).merge(user_id: current_user.id)
   end
