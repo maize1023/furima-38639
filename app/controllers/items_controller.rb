@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_sing_in, except: [:index, :show,]
+  before_action :set_item, only: [:show, :edit]
 
 
 
@@ -14,7 +15,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    # @item = Item.find(params[:id])
   end
 
 
@@ -30,11 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # if user_signed_in? && current_user.id != @item.user_id
-    #   redirect_to root_path
-    # end
-    @item = Item.find(params[:id])
-
+    # @item = Item.find(params[:id])
     if @item.user_id != current_user.id
       redirect_to root_path
     end
@@ -50,6 +47,13 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+
+
   def item_params
     params.require(:item).permit(:name, :description, :category_id,  :condition_id, :fee_id, :from_id, :day_id, :price, :image).merge(user_id: current_user.id)
   end
