@@ -11,7 +11,7 @@ class PurchaseRecordsController < ApplicationController
     @purchase = PurchaseRecordAddresse.new(purchase_params)
     if @purchase.valid?
 
-      Payjp.api_key = "sk_test_46f062606e89a928a5429354"  # 自身のPAY.JPテスト秘密鍵を記述しましょう
+      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # 自身のPAY.JPテスト秘密鍵を記述しましょう
       Payjp::Charge.create(
         amount: @item[:price],  # 商品の値段
         card: purchase_params[:token],    # カードトークン
