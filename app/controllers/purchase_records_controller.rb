@@ -2,14 +2,15 @@ class PurchaseRecordsController < ApplicationController
   before_action :move_to_sing_in
 
   def index
-    #フォームオブジェクトのインスタンスを生成し、インスタンス変数に代入する
-    # @purchase = PurchaseRecordAddresse.new
     @item = Item.find(params[:item_id])
-
-    if @item.user_id =!  current_user.id
-      @purchase = PurchaseRecordAddresse.new
-    else
+    if @item.user_id == current_user.id
       redirect_to root_path
+    else
+      if @item.user_id != current_user.id && @item.purchase_record != nil
+        redirect_to root_path
+      else
+        @purchase = PurchaseRecordAddresse.new
+      end
     end
   end
 
@@ -45,7 +46,7 @@ class PurchaseRecordsController < ApplicationController
     end
   end
 
-  def sold_out
-    if
-  end
+  # def sold_out
+  #   if
+  # end
 end
