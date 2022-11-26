@@ -18,7 +18,7 @@ class PurchaseRecordAddresse
     validates :town
     validates :street
     validates :building
-    validates :phone
+    validates :phone, format: {with: /\A\d{10,11}\z/, message: "is invalid. Include hyphen(-)"}
     # saveの前に行う
     # validates :purchase_record_id
     validates :token
