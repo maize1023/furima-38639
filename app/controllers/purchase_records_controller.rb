@@ -15,7 +15,6 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @item = Item.find(params[:item_id])
     @purchase = PurchaseRecordAddresse.new(purchase_params)
     if @purchase.valid?
