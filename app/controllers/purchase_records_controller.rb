@@ -1,8 +1,8 @@
 class PurchaseRecordsController < ApplicationController
   before_action :move_to_sing_in
+  before_action :item_find, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     if @item.user_id == current_user.id
       redirect_to root_path
     else
@@ -15,7 +15,6 @@ class PurchaseRecordsController < ApplicationController
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase = PurchaseRecordAddresse.new(purchase_params)
     if @purchase.valid?
 
@@ -45,7 +44,7 @@ class PurchaseRecordsController < ApplicationController
     end
   end
 
-  # def sold_out
-  #   if
-  # end
+  def item_find
+
+  end
 end
