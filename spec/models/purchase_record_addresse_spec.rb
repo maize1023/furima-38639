@@ -23,7 +23,7 @@ RSpec.describe PurchaseRecordAddresse, type: :model do
         expect(@purchase_record_addresse.errors.full_messages).to include("Post code can't be blank")
       end
       it 'from_idが空だとでないと保存できないこと' do
-        @purchase_record_addresse.from_id = ''
+        @purchase_record_addresse.from_id = '1'
         @purchase_record_addresse.valid?
         expect(@purchase_record_addresse.errors.full_messages).to include("From can't be blank")
       end
