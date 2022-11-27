@@ -6,7 +6,7 @@ class PurchaseRecordsController < ApplicationController
     if @item.user_id == current_user.id
       redirect_to root_path
     else
-      if @item.user_id != current_user.id && @item.purchase_record != nil
+      if @item.purchase_record != nil
         redirect_to root_path
       else
         @purchase = PurchaseRecordAddresse.new
