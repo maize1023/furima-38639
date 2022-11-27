@@ -44,7 +44,4 @@ class PurchaseRecordsController < ApplicationController
     end
   end
 
-  def item_find
-
-  end
 end
