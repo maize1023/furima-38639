@@ -3,14 +3,10 @@ class PurchaseRecordsController < ApplicationController
   before_action :item_find, only: [:index, :create]
 
   def index
-    if @item.user_id == current_user.id
+    if @item.user_id == current_user.id || @item.purchase_record != nil
       redirect_to root_path
     else
-      if @item.purchase_record != nil
-        redirect_to root_path
-      else
-        @purchase = PurchaseRecordAddresse.new
-      end
+      @purchase = PurchaseRecordAddresse.new
     end
   end
 
