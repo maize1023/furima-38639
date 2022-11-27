@@ -17,7 +17,7 @@ class PurchaseRecordAddresse
     validates :from_id, numericality: { other_than: 1 , message: "can't be blank"}
     validates :town
     validates :street
-    validates :building
+    # validates :building
     validates :phone, format: {with: /\A\d{10,11}\z/, message: "is invalid. Include hyphen(-)"}
     # saveの前に行う
     # validates :purchase_record_id
