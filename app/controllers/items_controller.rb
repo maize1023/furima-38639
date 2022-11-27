@@ -28,7 +28,7 @@ class ItemsController < ApplicationController
 
     if @item.purchase_record == nil
       if @item.user_id != current_user.id
-        redirect_to root_path
+         @item = Item.find(params[:id])
       end
     else
       redirect_to root_path
