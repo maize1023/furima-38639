@@ -25,8 +25,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_id != current_user.id
-      redirect_to root_path
+    # もし購入情報が存在 or ログインユーザーが出品者時ではない場合は、トップに遷移
+    if  @item.purchase_record != nil ||  @item.user_id != current_user.id
+       redirect_to root_path
     end
   end
 
