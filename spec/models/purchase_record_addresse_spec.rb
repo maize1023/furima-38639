@@ -74,10 +74,10 @@ RSpec.describe PurchaseRecordAddresse, type: :model do
         @purchase_record_addresse.valid?
         expect(@purchase_record_addresse.errors.full_messages).to include("Phone is invalid")
       end
-      it '電話番号に半角数字以外が含まれている場合は購入できない（※半角数字以外が一文字でも含まれていれば良い）' do
+      it '電話番号に半角数字以外が含まれている場合は購入できない' do
         @purchase_record_addresse.phone = '08011111２11'
         @purchase_record_addresse.valid?
-        expect(@purchase_record_addresse.errors.full_messages).to include("Phone is invalid. Include hyphen(-)")
+        expect(@purchase_record_addresse.errors.full_messages).to include("Phone is invalid. Include hyphen(-)", "Phone is invalid")
       end
     end
   end
