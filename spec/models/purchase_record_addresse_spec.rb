@@ -13,6 +13,7 @@ RSpec.describe PurchaseRecordAddresse, type: :model do
         expect(@purchase_record_addresse).to be_valid
       end
       it 'buildingは空でも保存できること' do
+        @purchase_record_addresse.building = ''
          expect(@purchase_record_addresse).to be_valid
       end
     end
