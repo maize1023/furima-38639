@@ -14,7 +14,7 @@ class PurchaseRecordAddresse
     validates :town
     validates :street
     validates :phone, format: {with: /\A\d{10,11}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :phone, format: {with: /\A\d{10,11}\z/}
+    # validates :phone, format: {with: /\A\d{10,11}\z/}
 
     validates :token
   end
